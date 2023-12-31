@@ -16,6 +16,9 @@ const verifyToken = (req, res, next) => {
         req.user = user 
         next()
     });
+
+    const tokenCheck = req.cookies.accessToken;
+    console.log('Token:', tokenCheck);
 };
 
 export const verifyUser = (req, res, next) => {
