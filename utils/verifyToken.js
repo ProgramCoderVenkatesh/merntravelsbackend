@@ -16,14 +16,11 @@ const verifyToken = (req, res, next) => {
         req.user = user 
         next()
     });
-
-    const tokenCheck = req.cookies.accessToken;
-    console.log('Token:', tokenCheck);
 };
 
 export const verifyUser = (req, res, next) => {
     verifyToken(req, res, next, () => {
-        if(req.user.id === req.params.id || req.user.role === 'admin'){
+        if(req.user.id === req.params.id){
             next()
         } else {
             return res.status(401).json({success:false, message:"You're not authenticated"})
